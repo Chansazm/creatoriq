@@ -1,0 +1,37 @@
+{
+  "123": {
+    "name": "Ava Chen",
+    "campaigns": [
+      {
+        "campaign_id": "spring-launch",
+        "spend_usd": 1200.0,
+        "impressions": 320000
+      },
+      {
+        "campaign_id": "creator-week",
+        "spend_usd": 875.5,
+        "impressions": 185000
+      },
+      {
+        "campaign_id": "retargeting-test",
+        "spend_usd": 420.0,
+        "impressions": 96000
+      }
+    ]
+  },
+  "456": {
+    "name": "Mateo Rivera",
+    "campaigns": [
+      {
+        "campaign_id": "summer-drop",
+        "spend_usd": 2300.0,
+        "impressions": 410000
+      },
+      {
+        "campaign_id": "brand-lift",
+        "spend_usd": 640.0,
+        "impressions": 140000
+      }
+    ]
+  }
+}

@@ -2,7 +2,10 @@
 import os
 
 from fastapi import FastAPI
+from fastapi import HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
+from analytics import get_creator_cpm
 
 app = FastAPI()
 
@@ -26,4 +29,9 @@ def health_check():
 
 @app.get("/analytics/cpm/{creator_id}")
 def get_cpm(creator_id: str):
-    return {"creator": creator_id, "cpm": 3.5}
+    cpm = get_creator_cpm(creator_id)
+
+    if cpm is None:
+        raise HTTPException(status_code=404, detail="Creator metrics not found")
+
+    return cpm
