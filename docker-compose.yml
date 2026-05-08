@@ -1,0 +1,21 @@
+
+version: '3'
+services:
+  java:
+    image: openjdk:17
+    working_dir: /app
+    volumes:
+      - ./backend-java:/app
+    command: ["sh","-c","./mvnw spring-boot:run"]
+    ports:
+      - "8080:8080"
+
+  python:
+    build: ./analytics-python
+    ports:
+      - "8001:8000"
+
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
