@@ -20,6 +20,10 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+@app.get("/")
+def health_check():
+    return {"status": "ok", "service": "creatoriq-analytics"}
+
 @app.get("/analytics/cpm/{creator_id}")
 def get_cpm(creator_id: str):
     return {"creator": creator_id, "cpm": 3.5}
