@@ -13,6 +13,12 @@ const formatCurrency = (value) =>
 
 const formatNumber = (value) => new Intl.NumberFormat("en-US").format(value);
 
+const sourceLabels = {
+  local_fallback: "Local fallback",
+  postgres: "Postgres",
+  remote_api: "Live API",
+};
+
 function App() {
   const [creatorId, setCreatorId] = useState("123");
   const [draftCreatorId, setDraftCreatorId] = useState("123");
@@ -96,7 +102,7 @@ function App() {
               <div className="panel-header">
                 <h2>Data source</h2>
                 <span className="status-pill">
-                  {data.source === "remote_api" ? "Live API" : "Local fallback"}
+                  {sourceLabels[data.source] || data.source}
                 </span>
               </div>
 
