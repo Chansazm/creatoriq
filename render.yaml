@@ -6,3 +6,6 @@ services:
     rootDir: backend-java
     dockerfilePath: ./Dockerfile
     healthCheckPath: /api/wallet/health
+    envVars:
+      - key: FRONTEND_ORIGINS
+        value: https://creatoriq-beta.vercel.app
