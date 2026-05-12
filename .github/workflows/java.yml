@@ -1,0 +1,46 @@
+name: Java CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "backend-java/**"
+      - ".github/workflows/java.yml"
+  pull_request:
+    paths:
+      - "backend-java/**"
+      - ".github/workflows/java.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Test and package Spring Boot backend
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: backend-java
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: maven
+
+      - name: Test and package
+        run: mvn --batch-mode clean verify
+        env:
+          FRONTEND_ORIGINS: ${{ vars.FRONTEND_ORIGINS || 'http://localhost:3000,http://localhost:5173' }}
+
+      - name: Upload backend artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: java-backend-jar
+          path: backend-java/target/*.jar
+          if-no-files-found: error
